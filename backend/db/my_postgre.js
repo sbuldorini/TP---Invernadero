@@ -1,6 +1,12 @@
-import { Client } from 'pg'
-const client = await new Client().connect()
- 
-const res = await client.query('SELECT $1::text as message', ['Hello world!'])
-console.log(res.rows[0].message) // Hello world!
-await client.end()
+import pg from 'pg'
+const { Pool } = pg
+
+const pool = new Pool({
+  host: 'localhost',
+  port: 5432,
+  database: 'biospatial',
+  user: 'postgres',
+  password: '1234',
+})
+
+export default pool
